@@ -973,6 +973,13 @@ body {
       }
     }
 
+    // Try to autoplay the instant the page loads, before any tap. Most
+    // browsers will silently block this without a prior user gesture, in
+    // which case the catch below just leaves it for the intro tap to start
+    // it (see beginIntro) — but on browsers/devices that do allow it, the
+    // music starts immediately.
+    tryPlayMusic();
+
     musicToggle.addEventListener('click', () => {
       if (bgm.paused) {
         bgm.play().catch(() => {});
@@ -1010,7 +1017,7 @@ body {
       isOpen = false;
       letterStage.classList.remove('visible');
       letterStage.setAttribute('aria-hidden', 'true');
-      bgm.pause();
+      // Music keeps playing after closing the letter — no bgm.pause() here.
 
       setTimeout(() => {
         outro.classList.add('show');
