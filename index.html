@@ -667,7 +667,7 @@ body {
     </section>
 
     <section id="letter-stage" aria-hidden="true">
-      <audio id="bgm" loop preload="none">
+      <audio id="bgm" loop preload="auto">
         <source src="dear-my-crazy-soulmate.mp3" type="audio/mpeg">
       </audio>
 
@@ -953,6 +953,7 @@ body {
     function beginIntro() {
       intro.classList.add('hidden');
       setTimeout(bloomIn, 250);
+      tryPlayMusic();
     }
     intro.addEventListener('click', beginIntro);
     intro.addEventListener('keydown', (e) => {
